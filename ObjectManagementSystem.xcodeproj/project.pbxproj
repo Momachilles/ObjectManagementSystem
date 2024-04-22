@@ -17,6 +17,7 @@
 		4E3E03D22BD66AA90073A76F /* ObjectManagementSystemUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3E03D12BD66AA90073A76F /* ObjectManagementSystemUITestsLaunchTests.swift */; };
 		4E3E03DF2BD66BD30073A76F /* SaalObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3E03DE2BD66BD30073A76F /* SaalObject.swift */; };
 		4E3E03E22BD66F720073A76F /* ObjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3E03E12BD66F720073A76F /* ObjectListView.swift */; };
+		4E3E041D2BD68A790073A76F /* EditObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3E041C2BD68A790073A76F /* EditObjectView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		4E3E03D12BD66AA90073A76F /* ObjectManagementSystemUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectManagementSystemUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4E3E03DE2BD66BD30073A76F /* SaalObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaalObject.swift; sourceTree = "<group>"; };
 		4E3E03E12BD66F720073A76F /* ObjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectListView.swift; sourceTree = "<group>"; };
+		4E3E041C2BD68A790073A76F /* EditObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditObjectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			children = (
 				4E3E03B42BD66AA80073A76F /* ContentView.swift */,
 				4E3E03E12BD66F720073A76F /* ObjectListView.swift */,
+				4E3E041C2BD68A790073A76F /* EditObjectView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				4E3E03E22BD66F720073A76F /* ObjectListView.swift in Sources */,
 				4E3E03B52BD66AA80073A76F /* ContentView.swift in Sources */,
 				4E3E03B72BD66AA80073A76F /* Item.swift in Sources */,
+				4E3E041D2BD68A790073A76F /* EditObjectView.swift in Sources */,
 				4E3E03DF2BD66BD30073A76F /* SaalObject.swift in Sources */,
 				4E3E03B32BD66AA80073A76F /* ObjectManagementSystemApp.swift in Sources */,
 			);

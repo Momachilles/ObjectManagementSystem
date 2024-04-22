@@ -13,22 +13,27 @@ struct ObjectListView: View {
   
   @Query private var objects: [SaalObject]
   
+  @State private var path = [SaalObject]()
+  
   var body: some View {
-    NavigationStack {
+    NavigationStack(path: $path) {
       List {
         ForEach(objects) { object in
-          VStack(alignment: .leading) {
-            HStack {
-              Text(object.type + ": " + object.name)
-              .font(.title2)
+          NavigationLink(value: object) {
+            VStack(alignment: .leading) {
+              HStack {
+                Text(object.type + ": " + object.name)
+                .font(.title2)
+              }
+              Text(object.objectDescription)
+                .font(.title3)
             }
-            Text(object.objectDescription)
-              .font(.title3)
           }
         }
         .onDelete(perform: deleteObject)
       }
       .navigationTitle("Objects")
+      .navigationDestination(for: SaalObject.self, destination: EditObjectView.init)
       .toolbar {
         ToolbarItem {
           Button(action: addObject) {
@@ -42,17 +47,6 @@ struct ObjectListView: View {
 
 // MARK: - Model context management
 extension ObjectListView {
-  func addObject() {
-    withAnimation {
-      let obj1 = SaalObject(name: "Objc1", description: "This is a first object", type: "Type1")
-      let obj2 = SaalObject(name: "Objc2", description: "This is a second object", type: "Type2")
-      let obj3 = SaalObject(name: "Objc3", description: "This is a third object", type: "Type3")
-      
-      modelContext.insert(obj1)
-      modelContext.insert(obj2)
-      modelContext.insert(obj3)
-    }
-  }
   
   func deleteObject(offsets: IndexSet) {
     withAnimation {
@@ -60,6 +54,12 @@ extension ObjectListView {
         modelContext.delete(objects[index])
       }
     }
+  }
+  
+  func addObject() {
+    let object = SaalObject()
+    modelContext.insert(object)
+    path = [object]
   }
 }
 
