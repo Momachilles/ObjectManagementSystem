@@ -10,7 +10,6 @@ import SwiftData
 
 struct EditObjectView: View {
   @Bindable var object: SaalObject
-  @State private var value = 0.0
   
   var body: some View {
     Form {
@@ -29,12 +28,35 @@ struct EditObjectView: View {
           .multilineTextAlignment(.trailing)
       }
       
-      Section("RelationShips") {
-        
+      Section("Relationships") {
+        ForEach(object.relations) { object in
+          VStack(alignment: .leading) {
+            HStack {
+              Text(object.type + ": " + object.name)
+                .font(.title2)
+            }
+            Text(object.objectDescription)
+              .font(.title3)
+          }
+        }
       }
     }
     .navigationTitle((object.name.isEmpty ? "Add" : "Edit") + " Object")
     .navigationBarTitleDisplayMode(.inline)
+    .toolbar {
+      ToolbarItem(placement: .topBarTrailing) {
+        Button(action: addRelationship) {
+          Label("Add Object", systemImage: "plus")
+        }
+      }
+    }
+  }
+  
+  func addRelationship() {
+    withAnimation {
+      let relationship = SaalObject(name: "Relation1", description: "Des1", type: "Typw1")
+      object.relations.append(relationship)
+    }
   }
 }
 
