@@ -9,54 +9,35 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-  // @Environment(\.modelContext) private var modelContext
-  // @Query private var items: [Item]
+  @Environment(\.modelContext) private var modelContext
+  
+  @State private var path = [SaalObject]()
   @State private var searchText = String.empty
   
   var body: some View {
-    ObjectListView(searchString: searchText)
-      .searchable(text: $searchText)
-    /*
-     NavigationSplitView {
-     List {
-     ForEach(items) { item in
-     NavigationLink {
-     Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-     } label: {
-     Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-     }
-     }
-     .onDelete(perform: deleteItems)
-     }
-     .toolbar {
-     ToolbarItem(placement: .navigationBarTrailing) {
-     EditButton()
-     }
-     ToolbarItem {
-     Button(action: addItem) {
-     Label("Add Item", systemImage: "plus")
-     }
-     }
-     }
-     } detail: {
-     Text("Select an item")
-     } */
-  }
-  /*
-  private func addItem() {
-    withAnimation {
-      let newItem = Item(timestamp: Date())
-      modelContext.insert(newItem)
+    NavigationStack(path: $path) {
+      ObjectListView(searchString: searchText)
+        .navigationTitle("Objects")
+        .navigationDestination(for: SaalObject.self, destination: EditObjectView.init)
+        .searchable(text: $searchText)
+        .toolbar {
+          ToolbarItem {
+            Button(action: addObject) {
+              Label("Add Object", systemImage: "plus")
+            }
+          }
+        }
     }
   }
-  
-  private func deleteItems(offsets: IndexSet) {
-    withAnimation {
-      for index in offsets {
-        modelContext.delete(items[index])
-      }
-    }
-  } */
+}
+
+// MARK: - Model context management
+extension ContentView {
+  func addObject() {
+    let object = SaalObject()
+    modelContext.insert(object)
+    path = [object]
+  }
 }
 
 #Preview {
