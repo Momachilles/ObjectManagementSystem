@@ -98,10 +98,10 @@
 		4E3E03B12BD66AA80073A76F /* ObjectManagementSystem */ = {
 			isa = PBXGroup;
 			children = (
+				4E3E03E02BD66DA90073A76F /* Model */,
 				4E3E03B22BD66AA80073A76F /* ObjectManagementSystemApp.swift */,
 				4E3E03B42BD66AA80073A76F /* ContentView.swift */,
 				4E3E03B62BD66AA80073A76F /* Item.swift */,
-				4E3E03DE2BD66BD30073A76F /* Object.swift */,
 				4E3E03B82BD66AA90073A76F /* Assets.xcassets */,
 				4E3E03BA2BD66AA90073A76F /* Preview Content */,
 			);
@@ -131,6 +131,14 @@
 				4E3E03D12BD66AA90073A76F /* ObjectManagementSystemUITestsLaunchTests.swift */,
 			);
 			path = ObjectManagementSystemUITests;
+			sourceTree = "<group>";
+		};
+		4E3E03E02BD66DA90073A76F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4E3E03DE2BD66BD30073A76F /* Object.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
