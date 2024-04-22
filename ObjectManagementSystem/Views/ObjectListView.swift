@@ -10,15 +10,38 @@ import SwiftData
 
 struct ObjectListView: View {
   @Environment(\.modelContext) var modelContext
+  @State private var searchText = String.empty
+  @State private var path = [SaalObject]()
   
   @Query private var objects: [SaalObject]
   
-  @State private var path = [SaalObject]()
+  var filteredObjects: [SaalObject] {
+    if searchText.isEmpty {
+      return objects
+    } else {
+      return objects.filter {
+        $0.name.localizedStandardContains(searchText) ||
+        $0.objectDescription.localizedStandardContains(searchText) ||
+        $0.type.localizedStandardContains(searchText)
+      }
+    }
+  }
+  
+  /*
+  init(searchString: String) {
+    _objects = Query(filter: #Predicate<SaalObject> {
+      if searchString.isEmpty {
+        return true
+      } else {
+        return $0.objectDescription.localizedStandardContains(searchString)
+      }
+    })
+  } */
   
   var body: some View {
     NavigationStack(path: $path) {
       List {
-        ForEach(objects) { object in
+        ForEach(filteredObjects) { object in
           NavigationLink(value: object) {
             VStack(alignment: .leading) {
               HStack {
@@ -34,6 +57,7 @@ struct ObjectListView: View {
       }
       .navigationTitle("Objects")
       .navigationDestination(for: SaalObject.self, destination: EditObjectView.init)
+      .searchable(text: $searchText)
       .toolbar {
         ToolbarItem {
           Button(action: addObject) {
