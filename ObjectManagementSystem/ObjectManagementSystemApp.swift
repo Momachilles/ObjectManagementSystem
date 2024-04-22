@@ -26,7 +26,7 @@ struct ObjectManagementSystemApp: App {
   
   var body: some Scene {
     WindowGroup {
-      ObjectListView()
+      ContentView()
     }
     // .modelContainer(sharedModelContainer)
     .modelContainer(for: SaalObject.self)
