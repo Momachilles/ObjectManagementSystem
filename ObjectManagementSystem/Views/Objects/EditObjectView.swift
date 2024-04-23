@@ -58,7 +58,11 @@ struct EditObjectView: View {
           isPresented = false
         }
         .navigationTitle("Add Relationship")
+        .navigationBarItems(trailing: Button("Cancel") {
+          isPresented = false
+        })
       }
+      .presentationDetents([.medium])
     })
   }
   
