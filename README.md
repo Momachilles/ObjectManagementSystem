@@ -1,4 +1,4 @@
-# Project Name
+# Object Management System
 
 Objects managment and their relationships assesment.
 
