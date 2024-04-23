@@ -62,16 +62,19 @@ struct EditObjectView: View {
     withAnimation {
       let number = (object.relations?.count ?? .zero) + 1
       let relationship = SaalObject(name: "Relation\(number)", description: "Des\(number)", type: "Type\(number)")
-      relationship.relations?.append(object)
       object.relations?.append(relationship)
     }
   }
   
   func deleteRelationship(offsets: IndexSet) {
-    guard let relations = object.relations else { return }
+    guard var relations = object.relations else { return }
     withAnimation {
       for index in offsets {
-        modelContext.delete(relations[index])
+        let relatedObject = relations[index]
+        if let relatedIndex = relatedObject.relations?.firstIndex(of: object) {
+          relatedObject.relations?.remove(at: relatedIndex)
+        }
+        relations.remove(at: index)
       }
     }
   }

@@ -10,9 +10,9 @@ import SwiftData
 
 @Model
 final class SaalObject {
-  var name: String
-  var objectDescription: String
-  var type: String
+  var name: String = String.empty
+  var objectDescription: String = String.empty
+  var type: String = String.empty
   var relations: [SaalObject]?
 
   init(name: String = .empty, description: String = .empty, type: String = .empty) {
