@@ -70,11 +70,9 @@ struct EditObjectView: View {
     .navigationBarTitleDisplayMode(.inline)
     .sheet(isPresented: $isPresented, content: {
       NavigationView {
-        ObjectSelectionView(objects: objects) { selectedObject in
-          // Action to perform when object is selected
-          print("Selected Object: \(selectedObject)")
+        AddRelationshipView(objects: objects) { selectedObject in
           addRelationship(from: selectedObject)
-          isPresented = false // Dismiss the modal sheet
+          isPresented = false
         }
         .navigationTitle("Add Relationship")
       }
@@ -111,24 +109,5 @@ struct EditObjectView: View {
       .modelContainer(container)
   } catch {
     fatalError("Failed to create model container.")
-  }
-}
-
-
-struct ObjectSelectionView: View {
-  let objects: [SaalObject] // Replace String with your object type
-  let didSelectObject: (SaalObject) -> Void
-  
-  var body: some View {
-    List {
-      ForEach(objects) { object in
-        Button(action: {
-          didSelectObject(object)
-        }) {
-          ObjectView(object: object)
-        }
-        .buttonStyle(PlainButtonStyle())
-      }
-    }
   }
 }
