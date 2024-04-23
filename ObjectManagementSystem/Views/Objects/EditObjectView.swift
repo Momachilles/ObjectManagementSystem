@@ -70,7 +70,7 @@ struct EditObjectView: View {
     .navigationBarTitleDisplayMode(.inline)
     .sheet(isPresented: $isPresented, content: {
       NavigationView {
-        AddRelationshipView(objects: objects) { selectedObject in
+        AddRelationshipView(to: object) { selectedObject in
           addRelationship(from: selectedObject)
           isPresented = false
         }
