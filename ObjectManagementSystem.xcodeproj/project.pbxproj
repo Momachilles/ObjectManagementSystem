@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4E3E03B32BD66AA80073A76F /* ObjectManagementSystemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3E03B22BD66AA80073A76F /* ObjectManagementSystemApp.swift */; };
 		4E3E03B52BD66AA80073A76F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3E03B42BD66AA80073A76F /* ContentView.swift */; };
-		4E3E03B72BD66AA80073A76F /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3E03B62BD66AA80073A76F /* Item.swift */; };
 		4E3E03B92BD66AA90073A76F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E3E03B82BD66AA90073A76F /* Assets.xcassets */; };
 		4E3E03BC2BD66AA90073A76F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E3E03BB2BD66AA90073A76F /* Preview Assets.xcassets */; };
 		4E3E03C62BD66AA90073A76F /* ObjectManagementSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3E03C52BD66AA90073A76F /* ObjectManagementSystemTests.swift */; };
@@ -43,7 +42,6 @@
 		4E3E03AF2BD66AA80073A76F /* ObjectManagementSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectManagementSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E3E03B22BD66AA80073A76F /* ObjectManagementSystemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectManagementSystemApp.swift; sourceTree = "<group>"; };
 		4E3E03B42BD66AA80073A76F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		4E3E03B62BD66AA80073A76F /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		4E3E03B82BD66AA90073A76F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E3E03BB2BD66AA90073A76F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4E3E03C12BD66AA90073A76F /* ObjectManagementSystemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjectManagementSystemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,7 +107,6 @@
 				4E3E03E32BD66FEB0073A76F /* Views */,
 				4E3E03E02BD66DA90073A76F /* Model */,
 				4E3E03B22BD66AA80073A76F /* ObjectManagementSystemApp.swift */,
-				4E3E03B62BD66AA80073A76F /* Item.swift */,
 				4E3E03B82BD66AA90073A76F /* Assets.xcassets */,
 				4E3E03BA2BD66AA90073A76F /* Preview Content */,
 			);
@@ -311,7 +308,6 @@
 				4E3E03B52BD66AA80073A76F /* ContentView.swift in Sources */,
 				4E3E04212BD7BF4D0073A76F /* AddRelationshipView.swift in Sources */,
 				4E3E041F2BD7BDB20073A76F /* ObjectView.swift in Sources */,
-				4E3E03B72BD66AA80073A76F /* Item.swift in Sources */,
 				4E3E041D2BD68A790073A76F /* EditObjectView.swift in Sources */,
 				4E3E03DF2BD66BD30073A76F /* SaalObject.swift in Sources */,
 				4E3E03B32BD66AA80073A76F /* ObjectManagementSystemApp.swift in Sources */,
