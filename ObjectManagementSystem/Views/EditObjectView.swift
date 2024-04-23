@@ -14,8 +14,22 @@ struct EditObjectView: View {
   @Bindable var object: SaalObject
   
   @Query private var objects: [SaalObject]
+  
   @State private var selectedRelatedObject: SaalObject = SaalObject()
   @State private var isPickerShown: Bool = false
+  
+  /*
+  init(object: SaalObject) {
+    self.object = object
+    
+    let objId = self.object.persistentModelID
+    let predicate = #Predicate<SaalObject> { obj in
+      obj.persistentModelID != objId ||
+      object.relations?.map { $0.persistentModelID }.contains(objId) ?? false
+    }
+    
+    _objects = Query(filter: predicate)
+  } */
   
   var body: some View {
     Form {
