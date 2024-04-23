@@ -18,6 +18,7 @@
 		4E3E03DF2BD66BD30073A76F /* SaalObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3E03DE2BD66BD30073A76F /* SaalObject.swift */; };
 		4E3E03E22BD66F720073A76F /* ObjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3E03E12BD66F720073A76F /* ObjectListView.swift */; };
 		4E3E041D2BD68A790073A76F /* EditObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3E041C2BD68A790073A76F /* EditObjectView.swift */; };
+		4E3E041F2BD7BDB20073A76F /* ObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3E041E2BD7BDB20073A76F /* ObjectView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		4E3E03DE2BD66BD30073A76F /* SaalObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaalObject.swift; sourceTree = "<group>"; };
 		4E3E03E12BD66F720073A76F /* ObjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectListView.swift; sourceTree = "<group>"; };
 		4E3E041C2BD68A790073A76F /* EditObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditObjectView.swift; sourceTree = "<group>"; };
+		4E3E041E2BD7BDB20073A76F /* ObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				4E3E03B42BD66AA80073A76F /* ContentView.swift */,
 				4E3E03E12BD66F720073A76F /* ObjectListView.swift */,
 				4E3E041C2BD68A790073A76F /* EditObjectView.swift */,
+				4E3E041E2BD7BDB20073A76F /* ObjectView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			files = (
 				4E3E03E22BD66F720073A76F /* ObjectListView.swift in Sources */,
 				4E3E03B52BD66AA80073A76F /* ContentView.swift in Sources */,
+				4E3E041F2BD7BDB20073A76F /* ObjectView.swift in Sources */,
 				4E3E03B72BD66AA80073A76F /* Item.swift in Sources */,
 				4E3E041D2BD68A790073A76F /* EditObjectView.swift in Sources */,
 				4E3E03DF2BD66BD30073A76F /* SaalObject.swift in Sources */,

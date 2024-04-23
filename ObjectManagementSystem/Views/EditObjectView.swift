@@ -14,9 +14,8 @@ struct EditObjectView: View {
   @Bindable var object: SaalObject
   
   @Query private var objects: [SaalObject]
-  
-  @State private var selectedRelatedObject: SaalObject = SaalObject()
-  @State private var isPickerShown: Bool = false
+
+  @State private var isPresented = false
   
   /*
   init(object: SaalObject) {
@@ -50,41 +49,18 @@ struct EditObjectView: View {
       
       if let relations = object.relations {
         Section(content: {
-          if isPickerShown {
-            VStack {
-              Picker("Add relationship", selection: $selectedRelatedObject) {
-                ForEach(objects, id: \.self) {
-                  Text($0.name).tag($0.name)
-                }
-              }
-              .pickerStyle(.navigationLink)
-            }
-          } else {
-            ForEach(relations) { object in
-              VStack(alignment: .leading) {
-                HStack {
-                  Text(object.type + ": " + object.name)
-                    .font(.title2)
-                }
-                Text(object.objectDescription)
-                  .font(.title3)
-              }
-            }
-            .onDelete(perform: deleteRelationship)
+          ForEach(relations) { object in
+            ObjectView(object: object)
           }
+          .onDelete(perform: deleteRelationship)
         }, header: {
           HStack {
             Text("Relationships")
             Spacer()
             Button {
-              isPickerShown.toggle()
+              isPresented.toggle()
             } label: {
-              if isPickerShown {
-                Text("Cancel")
-                  .textCase(.none)
-              } else {
-                Image(systemName: "plus")
-              }
+              Image(systemName: "plus")
             }
           }
         })
@@ -92,28 +68,22 @@ struct EditObjectView: View {
     }
     .navigationTitle((object.name.isEmpty ? "Add" : "Edit") + " Object")
     .navigationBarTitleDisplayMode(.inline)
-    .onChange(of: selectedRelatedObject) { oldValue, newValue in
-      print("Changed to: \(newValue.name)!")
-      if !newValue.name.isEmpty {
-        addRelationship(from: newValue)
+    .sheet(isPresented: $isPresented, content: {
+      NavigationView {
+        ObjectSelectionView(objects: objects) { selectedObject in
+          // Action to perform when object is selected
+          print("Selected Object: \(selectedObject)")
+          addRelationship(from: selectedObject)
+          isPresented = false // Dismiss the modal sheet
+        }
+        .navigationTitle("Add Relationship")
       }
-    }
+    })
   }
   
-  func addRelationship() {
-    withAnimation {
-      let number = (object.relations?.count ?? .zero) + 1
-      let relationship = SaalObject(name: "Relation\(number)", description: "Des\(number)", type: "Type\(number)")
-      object.relations?.append(relationship)
-    }
-  }
-  
-  func addRelationship(from relatedObject: SaalObject?) {
-    guard let relatedObject = relatedObject else { return }
+  func addRelationship(from relatedObject: SaalObject) {
     withAnimation {
       object.relations?.append(relatedObject)
-      selectedRelatedObject = SaalObject()
-      isPickerShown = false
     }
   }
   
@@ -141,5 +111,24 @@ struct EditObjectView: View {
       .modelContainer(container)
   } catch {
     fatalError("Failed to create model container.")
+  }
+}
+
+
+struct ObjectSelectionView: View {
+  let objects: [SaalObject] // Replace String with your object type
+  let didSelectObject: (SaalObject) -> Void
+  
+  var body: some View {
+    List {
+      ForEach(objects) { object in
+        Button(action: {
+          didSelectObject(object)
+        }) {
+          ObjectView(object: object)
+        }
+        .buttonStyle(PlainButtonStyle())
+      }
+    }
   }
 }

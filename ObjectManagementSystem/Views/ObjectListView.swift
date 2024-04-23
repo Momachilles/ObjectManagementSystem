@@ -29,14 +29,7 @@ struct ObjectListView: View {
     List {
       ForEach(objects) { object in
         NavigationLink(value: object) {
-          VStack(alignment: .leading) {
-            HStack {
-              Text(object.type + ": " + object.name)
-                .font(.title2)
-            }
-            Text(object.objectDescription)
-              .font(.title3)
-          }
+          ObjectView(object: object)
         }
       }
       .onDelete(perform: deleteObject)
