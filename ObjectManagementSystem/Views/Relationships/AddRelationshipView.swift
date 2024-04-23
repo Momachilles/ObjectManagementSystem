@@ -42,9 +42,13 @@ struct AddRelationshipView: View {
         Button(action: {
           didSelectObject?(object)
         }) {
-          ObjectView(object: object)
+          HStack {
+            ObjectView(object: object)
+            Spacer()
+          }
+          .contentShape(Rectangle())
         }
-        .buttonStyle(PlainButtonStyle())
+        .buttonStyle(PlainButtonStyle()) // Remove button default style
       }
     }
   }
