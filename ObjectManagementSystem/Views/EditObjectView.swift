@@ -13,6 +13,10 @@ struct EditObjectView: View {
   
   @Bindable var object: SaalObject
   
+  @Query private var objects: [SaalObject]
+  @State private var selectedRelatedObject: SaalObject = SaalObject()
+  @State private var isPickerShown: Bool = false
+  
   var body: some View {
     Form {
       LabeledContent("Name") {
@@ -32,30 +36,54 @@ struct EditObjectView: View {
       
       if let relations = object.relations {
         Section(content: {
-          ForEach(relations) { object in
-            VStack(alignment: .leading) {
-              HStack {
-                Text(object.type + ": " + object.name)
-                  .font(.title2)
+          if isPickerShown {
+            VStack {
+              Picker("Add relationship", selection: $selectedRelatedObject) {
+                ForEach(objects, id: \.self) {
+                  Text($0.name).tag($0.name)
+                }
               }
-              Text(object.objectDescription)
-                .font(.title3)
+              .pickerStyle(.navigationLink)
             }
+          } else {
+            ForEach(relations) { object in
+              VStack(alignment: .leading) {
+                HStack {
+                  Text(object.type + ": " + object.name)
+                    .font(.title2)
+                }
+                Text(object.objectDescription)
+                  .font(.title3)
+              }
+            }
+            .onDelete(perform: deleteRelationship)
           }
-          .onDelete(perform: deleteRelationship)
         }, header: {
           HStack {
             Text("Relationships")
             Spacer()
-            Button(action: addRelationship, label: {
-              Image(systemName: "plus")
-            })
+            Button {
+              isPickerShown.toggle()
+            } label: {
+              if isPickerShown {
+                Text("Cancel")
+                  .textCase(.none)
+              } else {
+                Image(systemName: "plus")
+              }
+            }
           }
         })
       }
     }
     .navigationTitle((object.name.isEmpty ? "Add" : "Edit") + " Object")
     .navigationBarTitleDisplayMode(.inline)
+    .onChange(of: selectedRelatedObject) { oldValue, newValue in
+      print("Changed to: \(newValue.name)!")
+      if !newValue.name.isEmpty {
+        addRelationship(from: newValue)
+      }
+    }
   }
   
   func addRelationship() {
@@ -63,6 +91,15 @@ struct EditObjectView: View {
       let number = (object.relations?.count ?? .zero) + 1
       let relationship = SaalObject(name: "Relation\(number)", description: "Des\(number)", type: "Type\(number)")
       object.relations?.append(relationship)
+    }
+  }
+  
+  func addRelationship(from relatedObject: SaalObject?) {
+    guard let relatedObject = relatedObject else { return }
+    withAnimation {
+      object.relations?.append(relatedObject)
+      selectedRelatedObject = SaalObject()
+      isPickerShown = false
     }
   }
   

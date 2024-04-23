@@ -18,7 +18,9 @@ struct ContentView: View {
     NavigationStack(path: $path) {
       ObjectListView(searchString: searchText)
         .navigationTitle("Objects")
-        .navigationDestination(for: SaalObject.self, destination: EditObjectView.init)
+        .navigationDestination(for: SaalObject.self) { object in
+          EditObjectView(object: object)
+        }
         .searchable(text: $searchText)
         .toolbar {
           ToolbarItem {
