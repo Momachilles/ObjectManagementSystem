@@ -10,7 +10,7 @@ import SwiftData
 
 struct AddRelationshipView: View {
   @Environment(\.modelContext) private var modelContext
-  @Query private var objects: [SaalObject] // Replace String with your object type
+  @Query private var objects: [SaalObject]
   
   let object: SaalObject
   let didSelectObject: ((SaalObject) -> Void)?
@@ -51,5 +51,20 @@ struct AddRelationshipView: View {
 }
 
 #Preview {
-  AddRelationshipView(to: SaalObject())
+  do {
+    let schema = Schema([SaalObject.self])
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try ModelContainer(for: schema, configurations: config)
+    let obj1 = SaalObject(name: "Obj1", description: "This is a first object", type: "Type1")
+    let obj2 = SaalObject(name: "Obj2", description: "This is a second object", type: "Type2")
+    container.mainContext.insert(obj1)
+    container.mainContext.insert(obj2)
+    
+    return NavigationStack {
+      AddRelationshipView(to: obj2)
+        .modelContainer(container)
+    }
+  } catch {
+    fatalError("Failed to create model container.")
+  }
 }

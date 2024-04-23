@@ -44,5 +44,5 @@ extension ContentView {
 
 #Preview {
   ContentView()
-    .modelContainer(for: Item.self, inMemory: true)
+    .modelContainer(for: SaalObject.self, inMemory: true)
 }

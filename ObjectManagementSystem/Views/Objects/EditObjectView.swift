@@ -9,27 +9,10 @@ import SwiftUI
 import SwiftData
 
 struct EditObjectView: View {
-  @Environment(\.modelContext) private var modelContext
-  
   @Bindable var object: SaalObject
   
-  @Query private var objects: [SaalObject]
-
   @State private var isPresented = false
-  
-  /*
-  init(object: SaalObject) {
-    self.object = object
-    
-    let objId = self.object.persistentModelID
-    let predicate = #Predicate<SaalObject> { obj in
-      obj.persistentModelID != objId ||
-      object.relations?.map { $0.persistentModelID }.contains(objId) ?? false
-    }
-    
-    _objects = Query(filter: predicate)
-  } */
-  
+
   var body: some View {
     Form {
       LabeledContent("Name") {
@@ -101,9 +84,14 @@ struct EditObjectView: View {
 
 #Preview {
   do {
+    let schema = Schema([SaalObject.self])
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try ModelContainer(for: SaalObject.self, configurations: config)
+    let container = try ModelContainer(for: schema, configurations: config)
     let obj1 = SaalObject(name: "Obj1", description: "This is a first object", type: "Type1")
+    let obj2 = SaalObject(name: "Obj2", description: "This is a second object", type: "Type2")
+    container.mainContext.insert(obj1)
+    container.mainContext.insert(obj2)
+    obj1.relations = [obj2]
     
     return EditObjectView(object: obj1)
       .modelContainer(container)

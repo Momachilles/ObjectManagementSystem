@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ObjectView: View {
   
@@ -24,5 +25,15 @@ struct ObjectView: View {
 }
 
 #Preview {
-  ObjectView(object: SaalObject(name: "Obj1", description: "Description of obj1", type: "Type1"))
+  do {
+    let schema = Schema([SaalObject.self])
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try ModelContainer(for: schema, configurations: config)
+    let obj1 = SaalObject(name: "Obj1", description: "This is a first object", type: "Type1")
+    
+    return ObjectView(object: obj1)
+      .modelContainer(container)
+  } catch {
+    fatalError("Failed to create model container.")
+  }
 }
