@@ -11,7 +11,7 @@ import SwiftData
 struct ContentView: View {
   @Environment(\.modelContext) private var modelContext
   
-  @State private var path = [SaalObject]()
+  @State private var path: [SaalObject] = []
   @State private var searchText = String.empty
   
   var body: some View {

@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ObjectListView: View {
-  @Environment(\.modelContext) var modelContext
+  @Environment(\.modelContext) private var modelContext
   
   @Query private var objects: [SaalObject]
   

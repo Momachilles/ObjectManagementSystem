@@ -9,6 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct EditObjectView: View {
+  @Environment(\.modelContext) private var modelContext
+  
   @Bindable var object: SaalObject
   
   var body: some View {
@@ -28,34 +30,49 @@ struct EditObjectView: View {
           .multilineTextAlignment(.trailing)
       }
       
-      Section("Relationships") {
-        ForEach(object.relations) { object in
-          VStack(alignment: .leading) {
-            HStack {
-              Text(object.type + ": " + object.name)
-                .font(.title2)
+      if let relations = object.relations {
+        Section(content: {
+          ForEach(relations) { object in
+            VStack(alignment: .leading) {
+              HStack {
+                Text(object.type + ": " + object.name)
+                  .font(.title2)
+              }
+              Text(object.objectDescription)
+                .font(.title3)
             }
-            Text(object.objectDescription)
-              .font(.title3)
           }
-        }
+          .onDelete(perform: deleteRelationship)
+        }, header: {
+          HStack {
+            Text("Relationships")
+            Spacer()
+            Button(action: addRelationship, label: {
+              Image(systemName: "plus")
+            })
+          }
+        })
       }
     }
     .navigationTitle((object.name.isEmpty ? "Add" : "Edit") + " Object")
     .navigationBarTitleDisplayMode(.inline)
-    .toolbar {
-      ToolbarItem(placement: .topBarTrailing) {
-        Button(action: addRelationship) {
-          Label("Add Object", systemImage: "plus")
-        }
-      }
-    }
   }
   
   func addRelationship() {
     withAnimation {
-      let relationship = SaalObject(name: "Relation1", description: "Des1", type: "Typw1")
-      object.relations.append(relationship)
+      let number = (object.relations?.count ?? .zero) + 1
+      let relationship = SaalObject(name: "Relation\(number)", description: "Des\(number)", type: "Type\(number)")
+      relationship.relations?.append(object)
+      object.relations?.append(relationship)
+    }
+  }
+  
+  func deleteRelationship(offsets: IndexSet) {
+    guard let relations = object.relations else { return }
+    withAnimation {
+      for index in offsets {
+        modelContext.delete(relations[index])
+      }
     }
   }
 }

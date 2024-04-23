@@ -13,7 +13,7 @@ final class SaalObject {
   var name: String
   var objectDescription: String
   var type: String
-  @Relationship(deleteRule: .cascade) var relations: [SaalObject] = []
+  var relations: [SaalObject]?
 
   init(name: String = .empty, description: String = .empty, type: String = .empty) {
     self.name = name
