@@ -153,12 +153,28 @@
 			isa = PBXGroup;
 			children = (
 				4E3E03B42BD66AA80073A76F /* ContentView.swift */,
+				4E3E04232BD7C0920073A76F /* Relationships */,
+				4E3E04222BD7C0840073A76F /* Objects */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4E3E04222BD7C0840073A76F /* Objects */ = {
+			isa = PBXGroup;
+			children = (
 				4E3E03E12BD66F720073A76F /* ObjectListView.swift */,
 				4E3E041C2BD68A790073A76F /* EditObjectView.swift */,
 				4E3E041E2BD7BDB20073A76F /* ObjectView.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		4E3E04232BD7C0920073A76F /* Relationships */ = {
+			isa = PBXGroup;
+			children = (
 				4E3E04202BD7BF4D0073A76F /* AddRelationshipView.swift */,
 			);
-			path = Views;
+			path = Relationships;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
